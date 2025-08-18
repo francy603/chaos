@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+# Ricreiamo il file index.html con le modifiche dopo il reset dell'ambiente.
+
+html_content_white = """<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -6,13 +8,14 @@
   <title>chaosvocalist</title>
   <style>
     body {
-      background: black;
-      color: white;
+      background: white;
+      color: black;
       font-family: Arial, sans-serif;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
@@ -25,12 +28,24 @@
     #countdown {
       font-size: 2.5rem;
       letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.5rem;
     }
   </style>
 </head>
 <body>
   <h1>chaosvocalist</h1>
   <div id="countdown"></div>
+  <p>it's almost time</p>
+
+  <!-- Audio di sottofondo -->
+  <audio autoplay loop>
+    <source src="2many.mp3" type="audio/mpeg">
+    Il tuo browser non supporta l'audio.
+  </audio>
 
   <script>
     // imposta la data del drop: 1 settembre 2025 alle 01:00
@@ -55,4 +70,11 @@
     }, 1000);
   </script>
 </body>
-</html>
+</html>"""
+
+# Salviamo il nuovo file index.html
+file_path_white = "/mnt/data/index.html"
+with open(file_path_white, "w") as f:
+    f.write(html_content_white)
+
+file_path_white
