@@ -1,83 +1,66 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Countdown Walpurgis Rising</title>
+  <title>Countdown</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      background-color: black;
       color: white;
       font-family: Arial, sans-serif;
-      font-size: 2em;
       text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    #startBtn {
-      background: white;
-      color: black;
-      border: none;
-      padding: 15px 25px;
-      font-size: 1em;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 20px;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #aaaaaa;
     }
     #countdown {
-      display: none;
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
-  <div id="intro">
-    <p>Tocca per avviare il conto alla rovescia</p>
-    <button id="startBtn">Avvia</button>
-  </div>
-  
+  <h1>Countdown</h1>
+  <h2>it's almost time</h2>
   <div id="countdown"></div>
 
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
-    const countdownEl = document.getElementById("countdown");
-    const music = document.getElementById("music");
-    const intro = document.getElementById("intro");
-    const startBtn = document.getElementById("startBtn");
+    // Imposta la data di scadenza (1 settembre ore 01:00)
+    const targetDate = new Date("September 1, 2025 01:00:00").getTime();
 
-    // Funzione countdown
-    function startCountdown() {
-      intro.style.display = "none";
-      countdownEl.style.display = "block";
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-      // Data evento (modifica qui la data)
-      const eventDate = new Date("2025-05-01T00:00:00").getTime();
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "TIME'S UP!";
+        return;
+      }
 
-      setInterval(() => {
-        const now = new Date().getTime();
-        const distance = eventDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }, 1000);
-
-      // Avvia musica
-      music.play().catch(() => {
-        console.log("Autoplay bloccato, serve interazione.");
-      });
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    startBtn.addEventListener("click", startCountdown);
+    // Aggiorna ogni secondo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
