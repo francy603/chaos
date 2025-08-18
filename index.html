@@ -32,6 +32,8 @@
   </style>
 </head>
 <body>
+  <audio id="background-audio" src="2many.mp3" loop></audio>
+
   <h1>Chaos is coming back</h1>
   <h2>it's almost time</h2>
   <div id="countdown"></div>
@@ -61,6 +63,20 @@
     // Aggiorna ogni secondo
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Codice per far partire l'audio a causa delle restrizioni dei browser
+    const audio = document.getElementById('background-audio');
+
+    // Tenta di riprodurre l'audio non appena la pagina è completamente caricata
+    window.addEventListener('load', () => {
+        // Imposta un volume più basso
+        audio.volume = 0.5;
+
+        // Tenta di riprodurre l'audio
+        audio.play().catch(error => {
+            console.log('Autoplay bloccato dal browser. È necessaria un\'interazione dell\'utente per avviare l\'audio.');
+        });
+    });
   </script>
 </body>
 </html>
