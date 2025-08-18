@@ -14,10 +14,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-    }
-    #countdown-container {
-      /* Inizialmente nascondi l'intero contenitore */
-      display: none;
+      position: relative; /* Necessario per posizionare l'overlay */
     }
     h1 {
       font-size: 3em;
@@ -32,6 +29,18 @@
       font-size: 2.5em;
       font-weight: bold;
       letter-spacing: 2px;
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+      z-index: 100; /* Assicura che sia sopra a tutto il resto */
     }
     #startButton {
       background-color: #333;
@@ -51,17 +60,17 @@
 <body>
   <audio id="background-audio" src="2many.mp3" loop></audio>
 
-  <button id="startButton">Enter the Chaos</button>
-
-  <div id="countdown-container">
-    <h1>Chaos is coming back</h1>
-    <h2>it's almost time</h2>
-    <div id="countdown"></div>
+  <div id="overlay">
+    <button id="startButton">Enable Sound</button>
   </div>
+
+  <h1>Chaos is coming back</h1>
+  <h2>it's almost time</h2>
+  <div id="countdown"></div>
 
   <script>
     const startButton = document.getElementById('startButton');
-    const countdownContainer = document.getElementById('countdown-container');
+    const overlay = document.getElementById('overlay');
     const audio = document.getElementById('background-audio');
 
     // Imposta la data di scadenza (1 settembre ore 01:00)
@@ -81,28 +90,4 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    // Aggiungi un evento al pulsante per far partire tutto
-    startButton.addEventListener('click', () => {
-      // Nascondi il pulsante e mostra il countdown
-      startButton.style.display = 'none';
-      countdownContainer.style.display = 'flex';
-
-      // Imposta il volume
-      audio.volume = 0.5;
-
-      // Avvia la riproduzione dell'audio
-      audio.play().catch(error => {
-        console.log('Errore nella riproduzione dell\'audio:', error);
-      });
-      
-      // Avvia l'aggiornamento del countdown
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
-    });
-  </script>
-</body>
-</html>
+      document.getElementById("countdown
