@@ -1,74 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>chaosvocalist</title>
+  <title>Countdown Walpurgis Rising</title>
   <style>
     body {
-      background: white;
-      color: black;
-      font-family: Arial, sans-serif;
-      text-align: center;
+      margin: 0;
+      height: 100vh;
+      background: black;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      flex-direction: column;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
+      text-align: center;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+    #startBtn {
+      background: white;
+      color: black;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
     }
-
     #countdown {
-      font-size: 2.5rem;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.5rem;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>chaosvocalist</h1>
+  <div id="intro">
+    <p>Tocca per avviare il conto alla rovescia</p>
+    <button id="startBtn">Avvia</button>
+  </div>
+  
   <div id="countdown"></div>
-  <p>it's almost time</p>
 
-  <!-- Audio di sottofondo -->
-  <audio autoplay loop>
-    <source src="2many.mp3" type="audio/mpeg">
-    Il tuo browser non supporta l'audio.
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // imposta la data del drop: 1 settembre 2025 alle 01:00
-    const dropDate = new Date("Sep 1, 2025 01:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    const music = document.getElementById("music");
+    const intro = document.getElementById("intro");
+    const startBtn = document.getElementById("startBtn");
 
-    const countdownFunction = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = dropDate - now;
+    // Funzione countdown
+    function startCountdown() {
+      intro.style.display = "none";
+      countdownEl.style.display = "block";
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Data evento (modifica qui la data)
+      const eventDate = new Date("2025-05-01T00:00:00").getTime();
 
-      document.getElementById("countdown").innerHTML =
-        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
 
-      if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "IL DROP È ONLINE!";
-      }
-    }, 1000);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+
+      // Avvia musica
+      music.play().catch(() => {
+        console.log("Autoplay bloccato, serve interazione.");
+      });
+    }
+
+    startBtn.addEventListener("click", startCountdown);
   </script>
 </body>
 </html>
-
-
