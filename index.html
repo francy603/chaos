@@ -51,7 +51,7 @@
 <body>
   <audio id="background-audio" src="2many.mp3" loop></audio>
 
-  <button id="startButton">Enter the Chaos</button>
+  <button id="startButton" onclick="startChaos()">Enter the Chaos</button>
 
   <div id="countdown-container">
     <h1>Chaos is coming back</h1>
@@ -78,4 +78,33 @@
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Funzione che viene chiamata quando si clicca il pulsante
+    function startChaos() {
+      console.log('Pulsante cliccato. Tentativo di avviare l\'audio.');
+      
+      // Nascondi il pulsante e mostra il countdown
+      startButton.style.display = 'none';
+      countdownContainer.style.display = 'flex';
+
+      // Imposta il volume
+      audio.volume = 0.5;
+
+      // Avvia la riproduzione dell'audio
+      audio.play().catch(error => {
+        console.log('Errore nella riproduzione dell\'audio:', error);
+      });
+      
+      // Avvia l'aggiornamento del countdown
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    }
+  </script>
+</body>
+</html>
