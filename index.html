@@ -14,7 +14,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative; /* Necessario per posizionare l'overlay */
+    }
+    #countdown-container {
+      /* Inizialmente nascondi l'intero contenitore */
+      display: none;
     }
     h1 {
       font-size: 3em;
@@ -29,18 +32,6 @@
       font-size: 2.5em;
       font-weight: bold;
       letter-spacing: 2px;
-    }
-    #overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
-      z-index: 100; /* Assicura che sia sopra a tutto il resto */
     }
     #startButton {
       background-color: #333;
@@ -60,17 +51,17 @@
 <body>
   <audio id="background-audio" src="2many.mp3" loop></audio>
 
-  <div id="overlay">
-    <button id="startButton">Enable Sound</button>
-  </div>
+  <button id="startButton">Enter the Chaos</button>
 
-  <h1>Chaos is coming back</h1>
-  <h2>it's almost time</h2>
-  <div id="countdown"></div>
+  <div id="countdown-container">
+    <h1>Chaos is coming back</h1>
+    <h2>it's almost time</h2>
+    <div id="countdown"></div>
+  </div>
 
   <script>
     const startButton = document.getElementById('startButton');
-    const overlay = document.getElementById('overlay');
+    const countdownContainer = document.getElementById('countdown-container');
     const audio = document.getElementById('background-audio');
 
     // Imposta la data di scadenza (1 settembre ore 01:00)
@@ -87,7 +78,4 @@
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60
