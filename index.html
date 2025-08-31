@@ -27,7 +27,6 @@
       width: auto;
       height: auto;
       z-index: -1;
-      display: none; /* Nascondi il video inizialmente */
     }
 
     #video-overlay {
@@ -38,20 +37,13 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: -1;
-      display: none; /* Nascondi l'overlay inizialmente */
     }
 
-    #content-container {
-      display: none; /* Nascondi il contenuto principale inizialmente */
+    h1, h2, #countdown, .youtube-button {
       position: relative;
       z-index: 1;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
-
+    
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
@@ -80,18 +72,47 @@
     .youtube-button:hover {
       background-color: #cc0000;
     }
-    #startButton {
-      padding: 15px 30px;
-      font-size: 1.5em;
-      background-color: #333;
-      color: white;
-      border: 2px solid #555;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-  <video loop playsinline id="video-background">
+  <video autoplay loop playsinline id="video-background">
     <source src="WhatsApp Video 2025-08-31 at 22.06.24.mp4" type="video/mp4">
     Il tuo browser non supporta il tag video.
-  </video
+  </video>
+
+  <div id="video-overlay"></div>
+
+  <h1>* get d0wn ! 1 @m!</h1>
+  <h2>it's almost time</h2>
+  <div id="countdown"></div>
+
+  <a class="youtube-button" href="https://youtu.be/_zcY18d-hxQ?si=4mU9rznhOFBIGxWC" target="_blank">
+    * prem!er!ng s00n !
+  </a>
+
+  <script>
+    const targetDate = new Date("September 1, 2025 01:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "TIME'S UP!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
