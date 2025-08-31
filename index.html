@@ -15,9 +15,51 @@
       justify-content: center;
       align-items: center;
     }
-    #countdown-container {
-      /* Inizialmente nascondi l'intero contenitore */
-      display: none;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #aaaaaa;
+    }
+    #countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .youtube-link {
+      margin-top: 20px;
+    }
+    .youtube-link img {
+      width: 150px; /* Imposta la larghezza dell'immagine */
+      border: 3px solid white; /* Aggiunge un bordo all'immagine */
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chaos is coming back</h1>
+  <h2>it's almost time</h2>
+  <div id="countdown"></div>
+
+  <a class="youtube-link" href="<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     h1 {
       font-size: 3em;
@@ -33,37 +75,72 @@
       font-weight: bold;
       letter-spacing: 2px;
     }
-    #startButton {
-      background-color: #333;
-      color: white;
-      border: 2px solid #555;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: background-color 0.3s, border-color 0.3s;
+    .youtube-link {
+      margin-top: 20px;
     }
-    #startButton:hover {
-      background-color: #555;
-      border-color: white;
+    .youtube-link img {
+      width: 150px; /* Imposta la larghezza dell'immagine */
+      border: 3px solid white; /* Aggiunge un bordo all'immagine */
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <audio id="background-audio" src="2many.mp3" loop></audio>
+  <h1>Chaos is coming back</h1>
+  <h2>it's almost time</h2>
+  <div id="countdown"></div>
 
-  <button id="startButton" onclick="startChaos()">Enter the Chaos</button>
+  <a class="youtube-link" href="<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #aaaaaa;
+    }
+    #countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .youtube-link {
+      margin-top: 20px;
+    }
+    .youtube-link img {
+      width: 150px; /* Imposta la larghezza dell'immagine */
+      border: 3px solid white; /* Aggiunge un bordo all'immagine */
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chaos is coming back</h1>
+  <h2>it's almost time</h2>
+  <div id="countdown"></div>
 
-  <div id="countdown-container">
-    <h1>Chaos is coming back</h1>
-    <h2>it's almost time</h2>
-    <div id="countdown"></div>
-  </div>
+  <a class="youtube-link" href="youtube.com/@hh0muu" target="_blank">
+    <img src="PERCORSO_IMMAGINE" alt="Click here to watch the video">
+  </a>
 
   <script>
-    const startButton = document.getElementById('startButton');
-    const countdownContainer = document.getElementById('countdown-container');
-    const audio = document.getElementById('background-audio');
-
     // Imposta la data di scadenza (1 settembre ore 01:00)
     const targetDate = new Date("September 1, 2025 01:00:00").getTime();
 
@@ -85,26 +162,71 @@
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    // Funzione che viene chiamata quando si clicca il pulsante
-    function startChaos() {
-      console.log('Pulsante cliccato. Tentativo di avviare l\'audio.');
-      
-      // Nascondi il pulsante e mostra il countdown
-      startButton.style.display = 'none';
-      countdownContainer.style.display = 'flex';
+    // Aggiorna ogni secondo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html> target="_blank">
+    <img src="PERCORSO_IMMAGINE" alt="Click here to watch the video">
+  </a>
 
-      // Imposta il volume
-      audio.volume = 0.5;
+  <script>
+    // Imposta la data di scadenza (1 settembre ore 01:00)
+    const targetDate = new Date("September 1, 2025 01:00:00").getTime();
 
-      // Avvia la riproduzione dell'audio
-      audio.play().catch(error => {
-        console.log('Errore nella riproduzione dell\'audio:', error);
-      });
-      
-      // Avvia l'aggiornamento del countdown
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "TIME'S UP!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+
+    // Aggiorna ogni secondo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html> target="_blank">
+    <img src="PERCORSO_IMMAGINE" alt="Click here to watch the video">
+  </a>
+
+  <script>
+    // Imposta la data di scadenza (1 settembre ore 01:00)
+    const targetDate = new Date("September 1, 2025 01:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "TIME'S UP!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Aggiorna ogni secondo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
