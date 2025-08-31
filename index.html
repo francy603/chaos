@@ -14,7 +14,36 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
+
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+    }
+
+    #video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    h1, h2, #countdown {
+      position: relative;
+      z-index: 1;
+    }
+    
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
@@ -29,24 +58,19 @@
       font-weight: bold;
       letter-spacing: 2px;
     }
-    .youtube-link {
-      margin-top: 20px;
-    }
-    .youtube-link img {
-      width: 150px;
-      border: 3px solid white;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
+  <video autoplay loop playsinline id="video-background">
+    <source src="WhatsApp Video 2025-08-31 at 22.06.24.mp4" type="video/mp4">
+    Il tuo browser non supporta il tag video.
+  </video>
+
+  <div id="video-overlay"></div>
+
   <h1>Chaos is coming back</h1>
   <h2>it's almost time</h2>
   <div id="countdown"></div>
-
-  <a class="youtube-link" href="http://youtube.com/post/Ugkx_tprYlp12mAJ_J8TXi-zUT8rCwgxV9Gk?si=InZ9Z1o0TmdB81Rp" target="_blank">
-    <img src="WhatsApp Image 2025-08-31 at 22.01.42.jpg" alt="Click here to watch the video">
-  </a>
 
   <script>
     const targetDate = new Date("September 1, 2025 01:00:00").getTime();
