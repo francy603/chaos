@@ -27,6 +27,7 @@
       width: auto;
       height: auto;
       z-index: -1;
+      display: none; /* Nascondi il video inizialmente */
     }
 
     #video-overlay {
@@ -37,13 +38,20 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: -1;
+      display: none; /* Nascondi l'overlay inizialmente */
     }
 
-    h1, h2, #countdown, .youtube-button {
+    #content-container {
+      display: none; /* Nascondi il contenuto principale inizialmente */
       position: relative;
       z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    
+
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
@@ -72,8 +80,18 @@
     .youtube-button:hover {
       background-color: #cc0000;
     }
+    #startButton {
+      padding: 15px 30px;
+      font-size: 1.5em;
+      background-color: #333;
+      color: white;
+      border: 2px solid #555;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <video autoplay loop playsinline id="video-background">
-    <source src="WhatsApp Video 2025-08-31 at 22.06.24.mp4" type="video/mp
+  <video loop playsinline id="video-background">
+    <source src="WhatsApp Video 2025-08-31 at 22.06.24.mp4" type="video/mp4">
+    Il tuo browser non supporta il tag video.
+  </video
