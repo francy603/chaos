@@ -39,7 +39,7 @@
       z-index: -1;
     }
 
-    h1, h2, #countdown {
+    h1, h2, #countdown, .youtube-button {
       position: relative;
       z-index: 1;
     }
@@ -58,6 +58,20 @@
       font-weight: bold;
       letter-spacing: 2px;
     }
+    .youtube-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: white;
+      background-color: #ff0000;
+      border: 2px solid white;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .youtube-button:hover {
+      background-color: #cc0000;
+    }
   </style>
 </head>
 <body>
@@ -68,9 +82,13 @@
 
   <div id="video-overlay"></div>
 
-  <h1>Chaos is coming back</h1>
+  <h1>* get d0wn ! 1 @m!</h1>
   <h2>it's almost time</h2>
   <div id="countdown"></div>
+
+  <a class="youtube-button" href="http://youtube.com/post/Ugkx_tprYlp12mAJ_J8TXi-zUT8rCwgxV9Gk?si=InZ9Z1o0TmdB81Rp" target="_blank">
+    listen to my new single NOW!
+  </a>
 
   <script>
     const targetDate = new Date("September 1, 2025 01:00:00").getTime();
