@@ -1,118 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Countdown</title>
+  <title>Tracklist</title>
   <style>
     body {
       background-color: black;
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      padding: 50px;
     }
-
-    #video-background {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: -1;
-    }
-
-    #video-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: -1;
-    }
-
-    h1, h2, #countdown, .youtube-button {
-      position: relative;
-      z-index: 1;
-    }
-    
     h1 {
       font-size: 3em;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
-    h2 {
+    ul {
+      list-style-type: none;
+      padding: 0;
       font-size: 1.5em;
-      margin-bottom: 30px;
-      color: #aaaaaa;
     }
-    #countdown {
-      font-size: 2.5em;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .youtube-button {
-      margin-top: 20px;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      text-decoration: none;
-      color: white;
-      background-color: #ff0000;
-      border: 2px solid white;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .youtube-button:hover {
-      background-color: #cc0000;
+    li {
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <video autoplay loop playsinline id="video-background">
-    <source src="WhatsApp Video 2025-08-31 at 22.06.24.mp4" type="video/mp4">
-    Il tuo browser non supporta il tag video.
-  </video>
-
-  <div id="video-overlay"></div>
-
-  <h1>* get d0wn ! 1 @m!</h1>
-  <h2>it's almost time</h2>
-  <div id="countdown"></div>
-
-  <a class="youtube-button" href="https://youtu.be/_zcY18d-hxQ?si=4mU9rznhOFBIGxWC" target="_blank">
-    * prem!er!ng s00n !
-  </a>
-
-  <script>
-    const targetDate = new Date("September 1, 2025 01:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "TIME'S UP!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+  <h1>TRACKLIST</h1>
+  <ul>
+    <li>2MANY</li>
+    <li>GET DOWN</li>
+    <li>BABY LET’S GO</li>
+    <li>DRKSHDW (FEAT. MANIA)</li>
+    <li>THE TRUTH IS</li>
+    <li>PUELLA MAGI (OUTRO)</li>
+  </ul>
 </body>
 </html>
