@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Tracklist</title>
+  <title>Tracklist e Countdown</title>
   <style>
     body {
       background-color: black;
@@ -23,6 +23,28 @@
     li {
       margin-bottom: 10px;
     }
+    #countdown-container {
+        margin-top: 50px;
+    }
+    #countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .soundcloud-button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: white;
+      background-color: #ff5500;
+      border: 2px solid white;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .soundcloud-button:hover {
+      background-color: #e54b00;
+    }
   </style>
 </head>
 <body>
@@ -34,5 +56,40 @@
     <li>DRKSHDW (FEAT. MANIA)</li>
     <li>PUELLA MAGI (OUTRO)</li>
   </ul>
+
+  <div id="countdown-container">
+    <h2>START EP OUT TOMORROW 1 AM</h2>
+    <div id="countdown"></div>
+    <a class="soundcloud-button" href="https://soundcloud.com/homurakemi" target="_blank">
+      START EP OUT TOMORROW 1 AM
+    </a>
+  </div>
+
+  <script>
+    // Imposta la data di scadenza (13 settembre 2025 all'1 di notte)
+    const targetDate = new Date("September 13, 2025 01:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "OUT NOW!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Aggiorna ogni secondo
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
